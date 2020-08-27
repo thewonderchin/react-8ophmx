@@ -14,14 +14,14 @@ const App = () => {
 
   useEffect(() =>{
     getSpells();
-  }, [query]);
+  }, []);
 
   const getSpells = async () => {
     const response = await fetch(`https://www.dnd5eapi.co/api/spells/${query}`);
     const data = await response.json();
     setSpells(data.hits);
     console.log(data.hits);
-  }
+  };
 
 const updateSearch = e => {
   setSearch(e.target.value);
@@ -45,7 +45,11 @@ const getSearch = e => {
           value={search}
           onChange={updateSearch}
         />
-        <button className="search-button" type="submit">FIND NOW</button>
+        <button 
+          className="search-button" 
+          type="submit">
+          FIND NOW
+        </button>
       </form>
     </div>
   );
