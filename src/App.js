@@ -1,31 +1,54 @@
 import React,{useEffect, useState} from "react";
 import "./style.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Recipe from './recipe';
+import Spells from './spells';
 
 const App = () => {
 
-  const APP_ID = 'd9b897d5';
-  const APP_KEY = 'a71b6348dce1eb66cf502760bcc4ff03';
+  const APP_ID = '';
+  const APP_KEY = '';
 
-  const [recipes, setRecipes] = useState([]);
+  const [spells, setSpells] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("fireball");
 
   useEffect(() =>{
-    getRecipes();
-  }, []);
-  const getRecipes = async () => {
-    const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`);
+    getSpells();
+  }, [query]);
+
+  const getSpells = async () => {
+    const response = await fetch(`https://www.dnd5eapi.co/api/spells/${query}`);
     const data = await response.json();
-    setRecipes(data.hits);
+    setSpells(data.hits);
+    console.log(data.hits);
   }
+
+const updateSearch = e => {
+  setSearch(e.target.value);
+  console.log(search);
+};
+
+const getSearch = e => {
+  e.preventDefault();
+  setQuery(search);
+};
+
   return(
     <div className="containerfluid text-center">
-      <form className="search-form">
-        <input className="search-bar" type="text"/>
+      <form 
+        className="search-form"
+        onSubmit={getSearch}
+      >
+        <input 
+          className="search-bar" 
+          type="text"
+          value={search}
+          onChange={updateSearch}
+        />
         <button className="search-button" type="submit">FIND NOW</button>
       </form>
     </div>
   );
-}
+};
 
 export default App;

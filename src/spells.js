@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Recipe = () => {
+const Spells = () => {
   return(
     <div>
       <h1>Title</h1>
@@ -8,4 +8,6 @@ const Recipe = () => {
       <img src=""/>
     </div>
   );
-}
+};
+
+export default Spells;
