@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Spells = () => {
+const Spells = (name,desc) => {
   return(
     <div>
-      <h1>Title</h1>
-      <p>Calories</p>
-      <img src=""/>
+      <h1>{name}}</h1>
+      <p>{desc}</p>
+      <img src={}/>
     </div>
   );
 };

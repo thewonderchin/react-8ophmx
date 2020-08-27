@@ -51,6 +51,7 @@ const getSearch = e => {
           FIND NOW
         </button>
       </form>
+      {spells}
     </div>
   );
 };
