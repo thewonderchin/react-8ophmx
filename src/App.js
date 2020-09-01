@@ -1,31 +1,30 @@
 import React,{useEffect, useState} from "react";
 import "./style.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Spells from './spells';
+import Character from './character';
 
 const App = () => {
 
   const APP_ID = '';
   const APP_KEY = '';
 
-  const [spells, setSpells] = useState([]);
+  const [character, setCharacter] = useState([]);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("fireball");
+  const [query, setQuery] = useState("18082051");
 
   useEffect(() =>{
-    getSpells();
-  }, []);
+    getCharacter();
+  }, [{}]);
 
-  const getSpells = async () => {
-    const response = await fetch(`https://www.dnd5eapi.co/api/spells/${query}`);
+  const getCharacter = async () => {
+    const response = await fetch(`https://character-service.dndbeyond.com/character/v3/character/${query}`);
     const data = await response.json();
-    setSpells(data.hits);
-    console.log(data.hits);
+    console.log(data);
+    setCharacter(data);
   };
 
 const updateSearch = e => {
   setSearch(e.target.value);
-  console.log(search);
 };
 
 const getSearch = e => {
@@ -51,7 +50,7 @@ const getSearch = e => {
           FIND NOW
         </button>
       </form>
-      {spells}
+ 
     </div>
   );
 };
